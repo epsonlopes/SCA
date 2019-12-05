@@ -37,3 +37,14 @@ sca/blueprints/contato/tasks.pyc
 sca/blueprints/contato/views.pyc
 sca/blueprints/page/__init__.pyc
 sca/blueprints/page/views.pyc
+.cache/v/cache/lastfailed
+cli/__init__.pyc
+cli/cli.pyc
+lib/tests.pyc
+sca/tests/__init__.pyc
+sca/tests/conftest.pyc
+sca/tests/contato/__init__.pyc
+sca/tests/contato/__pycache__/test_tasks.cpython-27-PYTEST.pyc
+sca/tests/contato/__pycache__/test_views.cpython-27-PYTEST.pyc
+sca/tests/page/__init__.pyc
+sca/tests/page/__pycache__/test_views.cpython-27-PYTEST.pyc
