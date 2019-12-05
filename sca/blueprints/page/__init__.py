@@ -1,0 +1,1 @@
+from sca.blueprints.page.views import page

@@ -1,0 +1,3 @@
+{
+  "tests/page/test_views.py::TestPage::()::test_home_page": true
+}

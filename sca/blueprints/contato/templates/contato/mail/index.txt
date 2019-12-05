@@ -1,0 +1,4 @@
+Remetente: {{ email }} 
+
+Mensagem:
+{{ message }}
