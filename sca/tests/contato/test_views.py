@@ -13,7 +13,7 @@ class TestContato(object):
         """ Contact form should redirect with a message. """
         form = {
           'email': 'email@dominio.com',
-          'message': 'Mensagem de teste do FORM do SCA validando a funcionalidade de envio de email no formulario de contato'
+          'message': 'Mensagem de teste do FORM do SCA validando a funcionalidade de envio de email no formulario de contato.'
         }
 
         response = client.post(url_for('contato.index'), data=form, follow_redirects=True)
