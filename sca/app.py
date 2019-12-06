@@ -3,11 +3,15 @@ from celery import Celery
 
 from sca.blueprints.page import page
 from sca.blueprints.contato import contato
-from sca.extensions import debug_toolbar, mail, csrf
+from sca.blueprints.usuario import usuario
+from sca.blueprints.usuario.models import Usuario
+
+from sca.extensions import debug_toolbar, mail, csrf, db, login_manager
 
 
 CELERY_TASK_LIST = [
     'sca.blueprints.contato.tasks',
+    'sca.blueprints.usuario.tasks',
 ]
 
 
@@ -42,6 +46,7 @@ def create_app(settings_override=None):
 
     app.register_blueprint(page)
     app.register_blueprint(contato)
+    app.register_blueprint(usuario)
     extensions(app)
 
     app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
@@ -54,5 +59,25 @@ def extensions(app):
     debug_toolbar.init_app(app)
     mail.init_app(app)
     csrf.init_app(app)
+    db.init_app(app)
+    login_manager.init_app(app)
 
     return None
+
+def authentication(app, user_model):
+
+    login_manager.login_view = 'usuario.login'
+
+    @login_manager.user_loader
+    def load_user(uid):
+        return user_model.query.get(uid)
+
+    @login_manager.token_loader
+    def load_token(token):
+        duration = app.config['REMEMBER_COOKIE_DURATION'].total_seconds()
+        serializer = URLSafeTimedSerializer(app.secret_key)
+
+        data = serializer.loads(token, max_age=duration)
+        user_uid = data[0]
+
+        return user_model.query.get(user_uid)

@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 DEBUG = True
 
 SERVER_NAME = 'localhost:8000'
@@ -19,3 +21,13 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_REDIS_MAX_CONNECTIONS = 5
+
+# SQLAlchemy.
+db_uri = 'postgresql://sca:m@ster@postgres:5432/sca'
+SQLALCHEMY_DATABASE_URI = db_uri
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+# Usuario.
+SEED_ADMIN_EMAIL = 'sca@local.host'
+SEED_ADMIN_SENHA = 'm@ster'
+REMEMBER_COOKIE_DURATION = timedelta(days=90)
