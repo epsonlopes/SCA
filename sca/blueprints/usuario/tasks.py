@@ -23,6 +23,6 @@ def deliver_password_reset_email(user_id, reset_token):
 
     ctx = {'usuario': usuario, 'reset_token': reset_token}
 
-    send_template_message(subject='Password reset from Snake Eyes', recipients=[usuario.email], template='usuario/mail/password_reset', ctx=ctx)
+    send_template_message(subject='Recuperacao de senha do S.C.A.', recipients=[usuario.email], template='usuario/mail/password_reset', ctx=ctx)
 
     return None

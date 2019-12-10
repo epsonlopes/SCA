@@ -39,7 +39,7 @@ class Usuario(UserMixin, ResourceMixin, db.Model):
         # Call Flask-SQLAlchemy's constructor.
         super(Usuario, self).__init__(**kwargs)
 
-        self.password = Usuario.encrypt_password(kwargs.get('senha', ''))
+        self.senha = Usuario.encrypt_password(kwargs.get('senha', ''))
 
     @classmethod
     def find_by_identity(cls, identity):
@@ -87,14 +87,14 @@ class Usuario(UserMixin, ResourceMixin, db.Model):
         private_key = current_app.config['SECRET_KEY']
 
         serializer = URLSafeTimedSerializer(private_key)
-        data = [str(self.id), md5(self.password.encode('utf-8')).hexdigest()]
+        data = [str(self.id), md5(self.senha.encode('utf-8')).hexdigest()]
 
         return serializer.dumps(data)
 
-    def authenticated(self, with_password=True, password=''):
+    def authenticated(self, with_password=True, senha=''):
        
         if with_password:
-            return check_password_hash(self.password, password)
+            return check_password_hash(self.senha, senha)
 
         return True
 

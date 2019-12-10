@@ -6,14 +6,13 @@
 {% block body %}
   <div class="row">
     <div class="col-md-4 col-md-offset-4 well">
-      {% call f.form_tag('user.login') %}
-        <legend>Sign in to continue</legend>
+      {% call f.form_tag('usuario.login') %}
+        <legend>Autentique-se para continuar</legend>
 
-        {% call f.form_group(form.identity, css_class='sm-margin-bottom',
-                             autofocus='autofocus') %}
+        {% call f.form_group(form.identity, css_class='sm-margin-bottom', autofocus='autofocus') %}
         {% endcall %}
 
-        {% call f.form_group(form.password, css_class='sm-margin-bottom') %}
+        {% call f.form_group(form.senha, css_class='sm-margin-bottom') %}
         {% endcall %}
 
         <div class="row">
@@ -24,7 +23,7 @@
           </div>
           <div class="col-md-6">
             <div class="visible-xs visible-sm sm-margin-top"></div>
-            <a href="{{ url_for('user.signup') }}"
+            <a href="{{ url_for('usuario.signup') }}"
                class="btn btn-default btn-block">
               Register
             </a>
@@ -33,8 +32,8 @@
       {% endcall %}
 
       <div class="text-center md-margin-top">
-        <a href="{{ url_for('user.begin_password_reset') }}" class="text-muted">
-          Forgot your password?
+        <a href="{{ url_for('usuario.begin_password_reset') }}" class="text-muted">
+          Esqueceu sua senha?
         </a>
       </div>
     </div>

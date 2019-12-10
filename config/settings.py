@@ -29,5 +29,5 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Usuario.
 SEED_ADMIN_EMAIL = 'sca@local.host'
-SEED_ADMIN_SENHA = 'm@ster'
+SEED_ADMIN_SENHA = 'm@ster01020304'
 REMEMBER_COOKIE_DURATION = timedelta(days=90)

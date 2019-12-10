@@ -1,27 +1,27 @@
 {% extends 'layouts/app.html' %}
 
-{% block title %}Account settings{% endblock %}
+{% block title %}Configuracoes da conta{% endblock %}
 
 {% block body %}
   <div class="row">
     <div class="col-md-5">
-      <h2>Settings</h2>
+      <h2>Configuracoes</h2>
       <h4 class="text-muted margin-bottom">{{ current_user.email }}</h4>
 
       <div class="list-group">
-        <a href="{{ url_for('user.update_credentials') }}"
+        <a href="{{ url_for('usuario.update_credentials') }}"
            class="list-group-item">
-          Update email and password
+          Atualizar e-mail e senha
         </a>
-        {% if current_user.username %}
+        {% if current_user.nome %}
           <span class="list-group-item quarter-faded text-muted">
-            Your username is
-            <strong>{{ current_user.username }}</strong>
+            Seu nome atual
+            <strong>{{ current_user.nome }}</strong>
           </span>
         {% else %}
-          <a href="{{ url_for('user.welcome') }}"
+          <a href="{{ url_for('usuario.welcome') }}"
              class="list-group-item">
-            Pick a username
+            Informe seu nome
           </a>
         {% endif %}
       </div>

@@ -10,17 +10,13 @@ from sca.blueprints.usuario.validations import ensure_identity_exists, ensure_ex
 
 class LoginForm(Form):
     next = HiddenField()
-    identity = StringField('Username or email',
-                           [DataRequired(), Length(3, 254)])
+    identity = StringField('Usuario ou e-mail', [DataRequired(), Length(3, 254)])
     senha = PasswordField('Senha', [DataRequired(), Length(8, 128)])
     # remember = BooleanField('Stay signed in')
 
 
 class BeginPasswordResetForm(Form):
-    identity = StringField('Username or email',
-                           [DataRequired(),
-                            Length(3, 254),
-                            ensure_identity_exists])
+    identity = StringField('Usuario ou e-mail', [DataRequired(), Length(3, 254), ensure_identity_exists])
 
 
 class PasswordResetForm(Form):
@@ -55,7 +51,7 @@ class WelcomeForm(ModelForm):
 
 
 class UpdateCredentials(ModelForm):
-    current_password = PasswordField('Current password',
+    current_password = PasswordField('Senha atual',
                                      [DataRequired(),
                                       Length(8, 128),
                                       ensure_existing_password_matches])

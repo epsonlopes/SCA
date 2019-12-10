@@ -33,7 +33,7 @@ def login():
     if form.validate_on_submit():
         u = Usuario.find_by_identity(request.form.get('identity'))
 
-        if u and u.authenticated(password=request.form.get('senha')):
+        if u and u.authenticated(senha=request.form.get('senha')):
             # As you can see remember me is always enabled, this was a design
             # decision I made because more often than not users want this
             # enabled. This allows for a less complicated login form.
@@ -53,9 +53,9 @@ def login():
 
                 return redirect(url_for('usuario.settings'))
             else:
-                flash('This account has been disabled.', 'error')
+                flash('Esse usuario foi desabilitado.', 'error')
         else:
-            flash('Identity or password is incorrect.', 'error')
+            flash('E-mail ou senha invalidos.', 'error')
 
     return render_template('usuario/login.html', form=form)
 
@@ -96,14 +96,14 @@ def password_reset():
             return redirect(url_for('user.begin_password_reset'))
 
         form.populate_obj(u)
-        u.password = Usuario.encrypt_password(request.form.get('senha'))
+        u.senha = Usuario.encrypt_password(request.form.get('senha'))
         u.save()
 
         if login_user(u):
-            flash('Your password has been reset.', 'success')
-            return redirect(url_for('user.settings'))
+            flash('Sua senha foi redefinida.', 'success')
+            return redirect(url_for('usuario.settings'))
 
-    return render_template('user/password_reset.html', form=form)
+    return render_template('usuario/password_reset.html', form=form)
 
 
 @usuario.route('/signup', methods=['GET', 'POST'])
@@ -115,11 +115,11 @@ def signup():
         u = Usuario()
 
         form.populate_obj(u)
-        u.password = Usuario.encrypt_password(request.form.get('senha'))
+        u.senha = Usuario.encrypt_password(request.form.get('senha'))
         u.save()
 
         if login_user(u):
-            flash('Awesome, thanks for signing up!', 'success')
+            flash('Isso ai!, obrigado por se registrar!', 'success')
             return redirect(url_for('usuario.welcome'))
 
     return render_template('usuario/signup.html', form=form)
@@ -160,7 +160,7 @@ def update_credentials():
         current_user.email = request.form.get('email')
 
         if new_password:
-            current_user.password = Usuario.encrypt_password(new_password)
+            current_user.senha = Usuario.encrypt_password(new_password)
 
         current_user.save()
 
