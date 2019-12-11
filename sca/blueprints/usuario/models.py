@@ -73,14 +73,14 @@ class Usuario(UserMixin, ResourceMixin, db.Model):
         reset_token = u.serialize_token()
 
         # This prevents circular imports.
-        from sca.blueprints.user.tasks import (deliver_password_reset_email)
+        from sca.blueprints.usuario.tasks import deliver_password_reset_email
         deliver_password_reset_email.delay(u.id, reset_token)
 
         return u
 
-    def is_active(self):
+    def esta_ativo(self):
 
-        return self.active
+        return self.ativo
 
     def get_auth_token(self):
        

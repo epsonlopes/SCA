@@ -1,26 +1,10 @@
-from flask import (
-    Blueprint,
-    redirect,
-    request,
-    flash,
-    url_for,
-    render_template)
-from flask_login import (
-    login_required,
-    login_user,
-    current_user,
-    logout_user)
-
+from flask import Blueprint, redirect, request, flash, url_for, render_template
+from flask_login import login_required, login_user, current_user, logout_user
 from lib.safe_next_url import safe_next_url
 from sca.blueprints.usuario.decorators import anonymous_required
 from sca.blueprints.usuario.models import Usuario
-from sca.blueprints.usuario.forms import (
-    LoginForm,
-    BeginPasswordResetForm,
-    PasswordResetForm,
-    SignupForm,
-    WelcomeForm,
-    UpdateCredentials)
+from sca.blueprints.usuario.forms import LoginForm, BeginPasswordResetForm, PasswordResetForm, SignupForm, WelcomeForm, UpdateCredentials
+
 
 usuario = Blueprint('usuario', __name__, template_folder='templates')
 
